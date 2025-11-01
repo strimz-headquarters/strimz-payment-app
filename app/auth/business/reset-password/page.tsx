@@ -1,4 +1,4 @@
-import ResetPasswordForm from "@/components/auth/ResetPassword";
+import ResetPasswordForm from "@/components/auth/business/ResetPassword";
 
 /**
  * Renders the reset password page layout.

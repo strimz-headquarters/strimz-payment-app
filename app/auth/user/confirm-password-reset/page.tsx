@@ -1,4 +1,4 @@
-import ConfirmPasswordResetEmail from "@/components/auth/ConfirmPswdReset";
+import ConfirmPasswordResetEmail from "@/components/auth/user/ConfirmPswdReset";
 
 /**
  * Renders the Confirm Password Reset page layout.

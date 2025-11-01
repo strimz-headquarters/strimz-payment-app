@@ -1,4 +1,4 @@
-import ConfirmPasswordResetEmail from "@/components/auth/ConfirmPswdReset";
+import ConfirmPasswordResetEmail from "@/components/auth/business/ConfirmPswdReset";
 
 
 /**

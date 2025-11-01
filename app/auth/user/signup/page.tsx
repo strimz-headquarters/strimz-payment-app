@@ -1,4 +1,4 @@
-import SignupForm from "@/components/auth/Signup";
+import SignupForm from "@/components/auth/user/Signup";
 
 /**
  * A page for users to sign up.
