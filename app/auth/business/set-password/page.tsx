@@ -1,4 +1,4 @@
-import SetNewPasswordForm from "@/components/auth/SetNewPassword";
+import SetNewPasswordForm from "@/components/auth/business/SetNewPassword";
 
 
 /**

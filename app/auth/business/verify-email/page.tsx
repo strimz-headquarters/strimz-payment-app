@@ -1,4 +1,4 @@
-import VerificationForm from "@/components/auth/Verify";
+import VerificationForm from "@/components/auth/business/Verify";
 
 /**
  * A page for verifying an email address.
