@@ -26,7 +26,7 @@ const BusinessSetNewPasswordForm = () => {
 
   const onSubmit = async (data: SetNewPasswordInput) => {
     try {
-      console.log('Business new password created');
+      console.log('Business new password created', data);
 
       // TODO: Replace with actual API call
       // await setBusinessNewPassword(data.password);
