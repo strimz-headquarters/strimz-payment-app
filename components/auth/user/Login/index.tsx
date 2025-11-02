@@ -57,7 +57,7 @@ const LoginForm = () => {
   };
 
   return (
-    <AuthFormContainer title="Login to Strimz">
+    <AuthFormContainer title="Welcome back">
       <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-3 mt-6">
         <FormInput
           label="Email"
