@@ -57,7 +57,7 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
       )}
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
-          className={`w-full h-[44px] rounded-[8px] border bg-[#F9FAFB] shadow-navbarShadow font-poppins text-[14px] text-[#8E8C9C] px-4 outline-none transition duration-300 focus:border-accent ${error ? 'border-red-500' : 'border-[#E5E7EB]'
+          className={`w-full h-[44px] rounded-[8px] border bg-[#F9FAFB] shadow-navbarShadow font-poppins text-[14px] text-[#8E8C9C] px-4 outline-none focus:ring-0 transition duration-300 focus:border-accent ${error ? 'border-red-500' : 'border-[#E5E7EB]'
             } ${className}`}
         >
           <SelectValue placeholder={placeholder}>
@@ -75,23 +75,25 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
           </SelectValue>
         </SelectTrigger>
         <SelectContent className="max-h-[300px]">
-          {/* Search input */}
-          <div className="relative w-full p-2 pb-0">
-            <input
-              type="search"
-              placeholder="Search country by name"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-[8px] border bg-[#F9FAFB] shadow-navbarShadow h-[44px] font-poppins text-[14px] placeholder:text-[14px] placeholder:text-[#8E8C9C] text-[#8E8C9C] pl-10 pr-4 outline-none transition duration-300 focus:border-accent border-[#E5E7EB]"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 text-[#58556A] pointer-events-none">
-              <IoSearchOutline className="w-5 h-5" />
+          {/* Search input - Sticky */}
+          <div className="sticky -top-1 w-full p-2 pb-3 bg-white z-10 border-b border-[#E5E7EB]">
+            <div className="relative w-full">
+              <input
+                type="search"
+                placeholder="Search country by name"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full rounded-[8px] border bg-[#F9FAFB] shadow-navbarShadow h-[44px] font-poppins text-[14px] placeholder:text-[14px] placeholder:text-[#8E8C9C] text-[#8E8C9C] pl-10 pr-4 outline-none transition duration-300 focus:border-accent border-[#E5E7EB]"
+                onClick={(e) => e.stopPropagation()}
+              />
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#58556A] pointer-events-none">
+                <IoSearchOutline className="w-5 h-5" />
+              </div>
             </div>
           </div>
 
           {/* Countries list */}
-          <SelectGroup className="mt-2">
+          <SelectGroup className="pt-2">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => {
                 const FlagComponent = (flags as any)[country.code];
