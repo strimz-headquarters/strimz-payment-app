@@ -58,7 +58,7 @@ const BusinessSignupForm = () => {
     };
 
     return (
-        <AuthFormContainer title="Create Business Account">
+        <AuthFormContainer title="Welcome to Strimz">
             <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-3 mt-6">
 
                 <FormInput
