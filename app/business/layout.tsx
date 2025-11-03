@@ -1,11 +1,12 @@
-"use client";
-import Footer from "@/components/dashboard/Footer";
-import Header from "@/components/dashboard/Header";
-import SideBar from "@/components/dashboard/SideBar";
+'use client'
+
+import Footer from "@/components/dashboard/business/Footer";
+import Header from "@/components/dashboard/business/Header";
+import SideBar from "@/components/dashboard/business/SideBar";
 import { useState } from "react";
 
 /**
- * The UserLayout component renders the layout for the user dashboard.
+ * The BusinessLayout component renders the layout for the business dashboard.
  * It includes a sidebar, a header, and a main content area.
  * The sidebar is collapsible and can be toggled by clicking on the hamburger
  * button in the header.
@@ -13,9 +14,9 @@ import { useState } from "react";
  * content of the currently active page.
  * The Footer component is rendered at the bottom of the page.
  * @param {React.ReactNode} children - The content to be rendered within the main section.
- * @returns {JSX.Element} The user layout component.
+ * @returns {JSX.Element} The business layout component.
  */
-export default function UserLayout({
+export default function BusinessLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

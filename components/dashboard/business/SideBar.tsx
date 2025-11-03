@@ -3,10 +3,10 @@ import { useEffect, useRef } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import Logo from "../shared/Logo";
+import Logo from "@/components/shared/Logo";
 import StrimzLogo from "@/public/logo/blueLogo.png"
 import { SideBarLinksTypes } from "@/types/dashboard";
-import { SideBarLinks } from "@/utils/sideBarLinks";
+import { BusinessSideBarLinks } from "@/utils/sideBarLinks";
 
 /**
  * The SideBar component renders a collapsible sidebar for the dashboard.
@@ -61,8 +61,8 @@ const SideBar = ({
             <div className="flex flex-col">
                 {/* <!-- SIDEBAR HEADER --> */}
                 <div className="flex flex-col gap-2 font-barlow px-6 py-8 lg:py-6.5">
-                    <div className="flex items-start justify-between gap-2  ">
-                        <Logo href='/user' className='w-[101.58px] md:w-[110.58px] lg:w-[130px]' image={StrimzLogo} />
+                    <div className="flex items-start justify-between gap-2 ">
+                        <Logo href='/business' className='w-[101.58px] md:w-[110.58px] lg:w-[130px]' image={StrimzLogo} />
 
                         <button
                             ref={trigger}
@@ -85,7 +85,7 @@ const SideBar = ({
                         <div>
                             <ul className="font-poppins flex flex-col gap-1.5">
                                 {/* <!-- Menu Item Calendar --> */}
-                                {SideBarLinks.map((link: SideBarLinksTypes, index: number) => (
+                                {BusinessSideBarLinks.map((link: SideBarLinksTypes, index: number) => (
                                     <li key={index}>
                                         <Link
                                             href={link.href}

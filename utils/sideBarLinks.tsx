@@ -1,8 +1,9 @@
 import { SideBarLinksTypes } from "@/types/dashboard";
 import { AiOutlineDollar } from "react-icons/ai";
 import { GoHome, GoHistory } from "react-icons/go";
+import { LuUsers } from "react-icons/lu";
 
-export const SideBarLinks: SideBarLinksTypes[] = [
+export const UserSideBarLinks: SideBarLinksTypes[] = [
     {
         href: "/user",
         title: "Home",
@@ -19,3 +20,21 @@ export const SideBarLinks: SideBarLinksTypes[] = [
         icon: <GoHistory className="w-[20px] h-[20px]" />
     },
 ]
+
+export const BusinessSideBarLinks: SideBarLinksTypes[] = [
+    {
+        href: "/business",
+        title: "Home",
+        icon: <GoHome className="w-[21px] h-[21px]" />
+    },
+    {
+        href: "/business/transactions",
+        title: "Transactions",
+        icon: <AiOutlineDollar className="w-[21px] h-[21px]" />
+    },
+    {
+        href: "/business/customers",
+        title: "Customers",
+        icon: <LuUsers className="w-[21px] h-[21px]" />
+    },
+];
