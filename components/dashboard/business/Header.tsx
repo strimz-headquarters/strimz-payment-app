@@ -2,12 +2,7 @@
 "use client";
 import Logo from "@/components/shared/Logo";
 import StrimzLogo from "@/public/logo/whiteLogo.png"
-import UserDropdown from "./UserDropdown";
-import { useEffect, useMemo, useState } from "react";
-import { IoCopyOutline } from "react-icons/io5";
-import { toast } from "sonner";
-import baseIcon from "@/public/networks/base.webp"
-import Image from "next/image";
+import Withdraw from "./Withdraw";
 
 /**
  * The Header component renders the topmost navigation bar for the dashboard.
@@ -27,42 +22,6 @@ const Header = ({
     sidebarOpen: boolean;
     setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-
-    const [user, setUser] = useState<{ username?: string, address?: string }>({});
-
-    useEffect(() => {
-        const data = window.localStorage.getItem("strimzUser");
-        const parsedUser = data ? JSON.parse(data) : { username: "Andrew", address: "0xbe03CE9d6001D27BE41fc87e3E3f777d04e70Fe2" };
-        setUser(parsedUser);
-    }, []);
-
-    const shortenAddress = useMemo(() => {
-        return user?.address ? `${user?.address.slice(0, 8)}...${user?.address.slice(-6)}` : "";
-    }, [user?.address]);
-
-
-    // async function clipboard copy
-    const copyTextToClipboard = async (text: any) => {
-        if ('clipboard' in navigator) {
-            return await navigator.clipboard.writeText(text);
-        } else {
-            return document.execCommand('copy', true, text);
-        }
-    }
-
-    //handle copy to clipboard
-    const handleCopy = () => {
-        copyTextToClipboard(user?.address).then(() => {
-            toast.success("Wallet address copied to clipboard", {
-                position: "top-right",
-            })
-        }).catch((err) => {
-            console.log(err);
-            toast.error("Failed to copy wallet address", {
-                position: "top-right",
-            })
-        });
-    }
 
     return (
         <header className="sticky top-0 z-[99] flex w-full bg-white overflow-hidden border-b border-[#E5E7EB]">
@@ -106,25 +65,19 @@ const Header = ({
                     </button>
                     {/* <!-- Hamburger Toggle BTN --> */}
 
-                    <Logo href='/user' className='w-[101.58px] flex-shrink-0 lg:hidden flex' image={StrimzLogo} />
+                    <Logo href='/business' className='w-[101.58px] flex-shrink-0 lg:hidden flex' image={StrimzLogo} />
                 </div>
 
                 <div className="hidden sm:flex flex-col">
-                    <h4 className="text-primary capitalize font-sora font-[500] text-base">Welcome Back, {user?.username}</h4>
-                    <div className="flex gap-1 items-center">
-                        <Image src={baseIcon} alt="Base Icon" className='w-4 h-4' width={16} height={16} quality={100} priority />
-                        <p className="text-sm capitalize text-[#58556A] font-poppins font-[400]">{shortenAddress}</p>
-                        <button type="button" onClick={handleCopy} className="text-[#58556A]">
-                            <IoCopyOutline className="w-4 h-4" />
-                        </button>
-                    </div>
+                    <h4 className="text-primary capitalize font-sora font-[500] text-base">Dashboard</h4>
+                    <p className="text-sm capitalize text-[#58556A] font-poppins font-[400]">View your business transactions/metrics</p>
 
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* <!-- User Area --> */}
-                    <UserDropdown />
-                    {/* <!-- User Area --> */}
+                    {/* <!-- Withdraw --> */}
+                    <Withdraw />
+                    {/* <!-- Withdraw  --> */}
                 </div>
             </div>
         </header>
