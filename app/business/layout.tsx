@@ -2,6 +2,7 @@
 import DashboardLayout from '@/components/dashboard_layout/shared/DashboardLayout';
 import BusinessHeaderContent from '@/components/dashboard_layout/business/BusinessHeaderContent';
 import Withdraw from '@/components/dashboard_layout/business/Withdraw';
+import BusinessSidebarFooter from '@/components/dashboard_layout/business/BusinessSidebarFooter';
 import { BusinessSideBarLinks } from '@/utils/sideBarLinks';
 
 /**
@@ -20,6 +21,7 @@ export default function BusinessLayout({
       sidebarLinks={BusinessSideBarLinks}
       headerCenterContent={<BusinessHeaderContent />}
       headerRightContent={<Withdraw />}
+      sidebarFooterContent={<BusinessSidebarFooter />}
     >
       {children}
     </DashboardLayout>
