@@ -1,8 +1,19 @@
+// Dashboard user type
+export type DashboardUserType = 'user' | 'business';
+
 export type SideBarLinksTypes = {
   href: string;
   title: string;
   icon: React.ReactNode;
 };
+
+// Dashboard configuration for user-specific vs business-specific content
+export interface DashboardConfig {
+  userType: DashboardUserType;
+  logoHref: string;
+  sidebarLinks: SideBarLinksTypes[];
+  headerContent?: React.ReactNode;
+}
 
 export type TxPropsTypes = {
   title: string;
