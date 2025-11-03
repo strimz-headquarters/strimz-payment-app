@@ -1,12 +1,15 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundBack, IoMdHelpCircleOutline } from "react-icons/io";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "@/components/shared/Logo";
 import StrimzLogo from "@/public/logo/blueLogo.png"
 import { SideBarLinksTypes } from "@/types/dashboard";
 import { BusinessSideBarLinks } from "@/utils/sideBarLinks";
+import { CgFileDocument } from "react-icons/cg";
+
+
 
 /**
  * The SideBar component renders a collapsible sidebar for the dashboard.
@@ -105,12 +108,32 @@ const SideBar = ({
             </div>
 
             {/* <!-- Sidebar Footer --> */}
-            <div className="w-full flex flex-col px-3 pb-8">
-                <div className="w-full flex flex-col justify-between h-[120px] alertGradient rounded-[12px] p-4">
-                    <p className="text-[#F9FAFB] font-[500] font-sora text-sm">Unlock more with a plan upgrade ⚡</p>
-                    <button type="button" onClick={() => router.push("/user/account/plan")} className="w-full h-[32px] flex justify-center items-center rounded-[8px] border border-[#E5E7EB] bg-[#F9FAFB] text-primary text-xs">Upgrade</button>
+            <div className="w-full flex flex-col px-3 pb-8 gap-2">
+                <div className="w-full flex items-center gap-2 rounded-[12px] bg-white p-4">
+                    <p className="text-accent font-[500] font-sora text-base bg-[#E7FEF3] rounded-full w-8 h-8 flex items-center justify-center">S</p>
+                    <div className="flex flex-col">
+                        <h3 className="text-[#58556A] text-sm font-poppins font-[500]">Strimz</h3>
+                        <Link href="mailto:help@strimz.com" className="text-[#6B7280] text-xs">Help@strimz.com</Link>
+                    </div>
                 </div>
-
+                <Link
+                    href="/business"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-2 text-sm font-[400] p-[12px] rounded-[8px] font-poppins text-[#58556A] transition-all hover:bg-[#FFFFFF] border hover:border-[#E5E7EB] hover:shadow-sidebarLinkShadow hover:text-primary`}
+                >
+                    <CgFileDocument className="w-[21px] h-[21px]" />
+                    Documentation
+                </Link>
+                <Link
+                    href="/business"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-2 text-sm font-[400] p-[12px] rounded-[8px] font-poppins text-[#58556A] transition-all hover:bg-[#FFFFFF] border hover:border-[#E5E7EB] hover:shadow-sidebarLinkShadow hover:text-primary`}
+                >
+                    <IoMdHelpCircleOutline className="w-[21px] h-[21px]" />
+                    Help
+                </Link>
             </div>
         </aside>
     );
