@@ -44,9 +44,8 @@ const SideBar: React.FC<SideBarProps> = ({
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-[9999] flex h-[100svh] w-64 flex-col justify-between overflow-y-hidden bg-[#F9FAFB] duration-300 ease-linear lg:static lg:translate-x-0 ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}
+      className={`absolute left-0 top-0 z-[9999] flex h-[100svh] w-64 flex-col justify-between overflow-y-hidden bg-[#F9FAFB] duration-300 ease-linear lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
     >
       <div className="flex flex-col">
         {/* Sidebar Header */}
@@ -83,16 +82,14 @@ const SideBar: React.FC<SideBarProps> = ({
                   <Link
                     href={link.href}
                     onClick={() => setSidebarOpen(false)}
-                    className={`group relative flex items-center gap-2.5 rounded-[8px] py-2.5 px-4 font-[500] text-[14px] font-poppins leading-[18px] duration-200 ease-in-out hover:bg-accent/10 ${
-                      isActive
-                        ? 'bg-accent/10 text-accent'
-                        : 'text-[#58556A]'
-                    }`}
+                    className={`group relative flex items-center gap-2.5 rounded-[8px] py-2.5 px-4 font-[500] text-[14px] font-poppins leading-[18px] duration-200 ease-in-out hover:bg-[#FFFFFF] border hover:border-[#E5E7EB] hover:shadow-sidebarLinkShadow hover:text-accent ${isActive
+                      ? 'bg-white border-[#E5E7EB] shadow-sidebarLinkShadow text-accent'
+                      : 'text-[#58556A]'
+                      }`}
                   >
                     <div
-                      className={`${
-                        isActive ? 'text-accent' : 'text-[#58556A] group-hover:text-accent'
-                      }`}
+                      className={`${isActive ? 'text-accent' : 'text-[#58556A] group-hover:text-accent'
+                        }`}
                     >
                       {link.icon}
                     </div>

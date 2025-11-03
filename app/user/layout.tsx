@@ -2,6 +2,7 @@
 import DashboardLayout from '@/components/dashboard_layout/shared/DashboardLayout';
 import UserHeaderContent from '@/components/dashboard_layout/user/UserHeaderContent';
 import UserDropdown from '@/components/dashboard_layout/user/UserDropdown';
+import UserSidebarFooter from '@/components/dashboard_layout/user/UserSidebarFooter';
 import { UserSideBarLinks } from '@/utils/sideBarLinks';
 
 /**
@@ -20,6 +21,7 @@ export default function UserLayout({
       sidebarLinks={UserSideBarLinks}
       headerCenterContent={<UserHeaderContent />}
       headerRightContent={<UserDropdown />}
+      sidebarFooterContent={<UserSidebarFooter />}
     >
       {children}
     </DashboardLayout>
