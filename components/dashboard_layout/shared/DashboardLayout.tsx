@@ -59,7 +59,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
             {/* Main Content Start */}
             <main>
-              <div className="mx-auto 2xl:max-w-screen-2xl max-w-[800px] mt-4 pb-6 md:pt-4 md:pb-10 2xl:p-10">
+              <div className="mx-auto 2xl:max-w-screen-2xl max-w-[800px] mt-3 md:mt-0 pb-6 md:pt-4 md:pb-10 2xl:p-10">
                 <section className="w-full lg:px-1.5 px-3">{children}</section>
               </div>
             </main>
