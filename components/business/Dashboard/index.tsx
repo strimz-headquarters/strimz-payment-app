@@ -6,13 +6,13 @@ import usdtIcon from "@/public/brands/USDT.svg"
 import Earnings from './Earnings'
 import Transactions from './Transactions'
 import Customers from './Customers'
+import Withdraw from '@/components/business/Dashboard/Withdraw'
 
 const BusinessDashboardHome = () => {
     return (
         <section className="w-full flex flex-col gap-6">
-
-            <main className="w-full bg-[#F9FAFB] rounded-[16px] p-4 flex flex-col gap-1.5">
-                <h2 className="text-primary font-[500] font-poppins text-sm">Wallet Overview</h2>
+            <main className="w-full bg-[#F9FAFB] rounded-[16px] p-4 flex flex-col gap-2.5">
+                <h2 className="text-primary font-[500] ml-2 font-poppins text-sm">Wallet Overview</h2>
                 {/* balance */}
                 <div className="w-full h-auto p-5 flex flex-col lg:justify-between rounded-[12px] bg-white shadow-[0px_1px_2px_0px_#00000014]">
                     <div className='w-full grid lg:grid-cols-4 grid-cols-2 gap-4 lg:gap-0'>
@@ -61,8 +61,8 @@ const BusinessDashboardHome = () => {
                             <h3 className="text-black font-[600] font-sora text-xl text-wrap">$ 104,320</h3>
                         </div>
                     </div>
-
                 </div>
+                <Withdraw />
             </main>
 
             {/* Earnings */}
