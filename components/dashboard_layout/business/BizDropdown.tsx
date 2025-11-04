@@ -55,7 +55,7 @@ const BizDropdown: React.FC = () => {
             <DropdownMenuContent className="text-[#58556A] w-44 z-[100] mr-2">
                 <DropdownMenuGroup>
                     <DropdownMenuItem asChild>
-                        <Link href="/business/profile">
+                        <Link href="/business/account">
                             <User />
                             <span>Profile Settings</span>
                         </Link>
@@ -67,7 +67,7 @@ const BizDropdown: React.FC = () => {
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link href="/user/settings">
+                        <Link href="/business/help">
                             <IoIosHelpCircleOutline />
                             <span>Help</span>
                         </Link>
