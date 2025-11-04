@@ -8,7 +8,7 @@ import { IoMdHelpCircleOutline } from 'react-icons/io';
 const BusinessSidebarFooter = () => {
   return (
     <div className="w-full flex flex-col pb-8 gap-2">
-      <div className="w-full flex items-center gap-2 rounded-[12px] bg-white p-4">
+      <div className="w-full flex items-center gap-2 rounded-[12px] bg-white px-4 py-2">
         <p className="text-accent font-[500] font-sora text-base bg-[#E7FEF3] rounded-full w-8 h-8 flex items-center justify-center">
           S
         </p>
