@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { FiCopy } from 'react-icons/fi'
 import { toast } from 'sonner'
+import { QRCodeSVG } from 'qrcode.react'
 
 interface PaymentStepProps {
   walletAddress: string
@@ -13,11 +14,12 @@ interface PaymentStepProps {
 
 const PaymentStep = ({
   walletAddress,
-  qrCode,
+  qrCode: _qrCode,
   onPaymentConfirmed,
   onLoginClick,
   initialTime = 300 // 5 minutes in seconds
 }: PaymentStepProps) => {
+  const qrCode = _qrCode // Explicitly using the prop
   const [timeLeft, setTimeLeft] = useState(initialTime)
 
   useEffect(() => {
@@ -48,14 +50,15 @@ const PaymentStep = ({
   }
 
   return (
-    <div className="w-full md:w-[480px] flex flex-col gap-6">
+    <div className="w-full lg:w-[480px] flex flex-col gap-6">
       {/* QR Code */}
       <div className="w-full flex justify-center">
-        <div className="w-[160px] h-[160px] bg-white p-2 rounded-[8px] border border-[#E5E7EB]">
-          {/* QR code placeholder - in production, use actual QR code generator */}
-          <div className="w-full h-full bg-[#F9FAFB] flex items-center justify-center text-xs text-[#6B7280]">
-            QR Code
-          </div>
+        <div className="w-[160px] h-[160px] bg-white p-3 rounded-[8px] border border-[#E5E7EB] flex items-center justify-center">
+          <QRCodeSVG
+            value={qrCode}
+            size={136}
+            level="H"
+          />
         </div>
       </div>
 

@@ -1,7 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { z } from 'zod'
-import { loginSchema } from '@/types/payment'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { loginSchema, LoginInput } from '@/types/payment'
 import {
   Dialog,
   DialogContent,
@@ -18,29 +19,27 @@ interface LoginDialogProps {
 }
 
 const LoginDialog = ({ open, onOpenChange, onLoginSuccess }: LoginDialogProps) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid, isDirty },
+    reset,
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+    mode: 'onChange',
+  })
+
+  const onSubmit = async (data: LoginInput) => {
     try {
-      loginSchema.parse({ email, password })
+      console.log('Login data:', data)
       // TODO: Implement actual login API call
       onLoginSuccess()
-      setErrors({})
       onOpenChange(false)
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        const fieldErrors: { email?: string; password?: string } = {}
-        err.errors.forEach((error) => {
-          if (error.path[0]) {
-            fieldErrors[error.path[0] as 'email' | 'password'] = error.message
-          }
-        })
-        setErrors(fieldErrors)
-      }
+      reset()
+    } catch (error) {
+      console.error('Failed to login:', error)
     }
   }
 
@@ -53,7 +52,7 @@ const LoginDialog = ({ open, onOpenChange, onLoginSuccess }: LoginDialogProps) =
           </DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 py-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 py-4">
           {/* Email */}
           <div className="w-full flex flex-col gap-2">
             <label htmlFor="login-email" className="font-poppins text-[14px] text-[#58556A] leading-[24px]">
@@ -62,12 +61,11 @@ const LoginDialog = ({ open, onOpenChange, onLoginSuccess }: LoginDialogProps) =
             <input
               type="email"
               id="login-email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              {...register('email')}
               placeholder="gregory@gmail.com"
               className="w-full rounded-[8px] border bg-[#F9FAFB] border-[#E5E7EB] shadow-navbarShadow h-[44px] font-poppins text-[14px] placeholder:text-[14px] placeholder:text-[#8E8C9C] text-primary px-4 outline-none transition duration-300 focus:border-accent"
             />
-            {errors.email && <p className="text-xs text-rose-600">{errors.email}</p>}
+            {errors.email && <p className="text-xs text-rose-600">{errors.email.message}</p>}
           </div>
 
           {/* Password */}
@@ -79,8 +77,7 @@ const LoginDialog = ({ open, onOpenChange, onLoginSuccess }: LoginDialogProps) =
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="login-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register('password')}
                 placeholder="••••••••••••"
                 className="w-full rounded-[8px] border bg-[#F9FAFB] border-[#E5E7EB] shadow-navbarShadow h-[44px] font-poppins text-[14px] placeholder:text-[14px] placeholder:text-[#8E8C9C] text-primary px-4 pr-12 outline-none transition duration-300 focus:border-accent"
               />
@@ -96,7 +93,7 @@ const LoginDialog = ({ open, onOpenChange, onLoginSuccess }: LoginDialogProps) =
                 )}
               </button>
             </div>
-            {errors.password && <p className="text-xs text-rose-600">{errors.password}</p>}
+            {errors.password && <p className="text-xs text-rose-600">{errors.password.message}</p>}
           </div>
 
           {/* Forgot Password */}
@@ -112,9 +109,14 @@ const LoginDialog = ({ open, onOpenChange, onLoginSuccess }: LoginDialogProps) =
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full h-[44px] flex justify-center items-center rounded-[8px] bg-accent text-white font-poppins font-[500] text-[14px] hover:opacity-90 transition-opacity mt-2"
+            disabled={!isDirty || !isValid || isSubmitting}
+            className={`w-full h-[44px] flex justify-center items-center rounded-[8px] font-poppins font-[500] text-[14px] mt-2 transition-opacity ${
+              !isDirty || !isValid || isSubmitting
+                ? 'bg-[#E5E7EB] text-[#9CA3AF] cursor-not-allowed'
+                : 'bg-accent text-white hover:opacity-90'
+            }`}
           >
-            Log in
+            {isSubmitting ? 'Logging in...' : 'Log in'}
           </button>
 
           {/* Terms */}

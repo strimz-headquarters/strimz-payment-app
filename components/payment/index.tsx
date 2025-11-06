@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Netflixlogo from "@/public/pay/netflix.png"
 import usdc from "@/public/pay/usdc.png"
+import logo from "@/public/logo/blueLogo.png"
 import PaymentSummary from './PaymentSummary'
 import EmailStep from './EmailStep'
 import PaymentStep from './PaymentStep'
@@ -10,6 +11,8 @@ import ConfirmedStep from './ConfirmedStep'
 import LoginDialog from './LoginDialog'
 import { PaymentStep as PaymentStepType, UserWallet } from '@/types/payment'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const UserPaymentPage = () => {
     const [currentStep, setCurrentStep] = useState<PaymentStepType>('email')
@@ -71,9 +74,15 @@ const UserPaymentPage = () => {
 
     return (
         <>
-            <section className="w-full h-full flex flex-col gap-4 p-4 md:p-8">
-                {/* Back Button - Hide on confirmed step */}
-                {currentStep !== 'confirmed' && (
+            {currentStep === 'confirmed' ? (
+                // Confirmed step - full screen centered, no payment summary
+                <section className="w-full min-h-screen flex items-center justify-center p-4">
+                    <ConfirmedStep />
+                </section>
+            ) : (
+                // All other steps - with payment summary
+                <section className="w-full h-full flex flex-col gap-4 p-4 md:p-8">
+                    {/* Back Button */}
                     <div className="w-full">
                         <button
                             type="button"
@@ -86,54 +95,67 @@ const UserPaymentPage = () => {
                             Back
                         </button>
                     </div>
-                )}
 
-                <div className="w-full flex-1 grid lg:grid-cols-5 md:grid-cols-2 gap-4">
-                    {/* Payment Summary */}
-                    <PaymentSummary
-                        brandLogo={paymentData.brandLogo}
-                        brandName={paymentData.brandName}
-                        tokenLogo={paymentData.tokenLogo}
-                        totalAmount={paymentData.totalAmount}
-                        planName={paymentData.planName}
-                        billingPeriod={paymentData.billingPeriod}
-                        planPrice={paymentData.planPrice}
-                        subtotal={paymentData.subtotal}
-                        tax={paymentData.tax}
-                        totalDue={paymentData.totalDue}
-                    />
+                    <div className="w-full flex-1 grid lg:grid-cols-5 md:grid-cols-2 gap-4">
+                        {/* Payment Summary */}
+                        <PaymentSummary
+                            brandLogo={paymentData.brandLogo}
+                            brandName={paymentData.brandName}
+                            tokenLogo={paymentData.tokenLogo}
+                            totalAmount={paymentData.totalAmount}
+                            planName={paymentData.planName}
+                            billingPeriod={paymentData.billingPeriod}
+                            planPrice={paymentData.planPrice}
+                            subtotal={paymentData.subtotal}
+                            tax={paymentData.tax}
+                            totalDue={paymentData.totalDue}
+                        />
 
-                    {/* Payment Steps */}
-                    <aside className='w-full lg:col-span-3 flex flex-col items-center justify-center p-4 md:p-8'>
-                        {currentStep === 'email' && (
-                            <EmailStep
-                                onProceed={handleEmailProceed}
-                                onLoginClick={handleLoginClick}
-                            />
-                        )}
+                        {/* Payment Steps */}
+                        <aside className='w-full lg:col-span-3 flex flex-col items-center justify-center p-4 md:p-8'>
+                            {currentStep === 'email' && (
+                                <EmailStep
+                                    onProceed={handleEmailProceed}
+                                    onLoginClick={handleLoginClick}
+                                />
+                            )}
 
-                        {currentStep === 'payment' && (
-                            <PaymentStep
-                                walletAddress={paymentData.walletAddress!}
-                                qrCode={paymentData.qrCode!}
-                                onPaymentConfirmed={handlePaymentConfirmed}
-                                onLoginClick={handleLoginClick}
-                            />
-                        )}
+                            {currentStep === 'payment' && (
+                                <PaymentStep
+                                    walletAddress={paymentData.walletAddress!}
+                                    qrCode={paymentData.qrCode!}
+                                    onPaymentConfirmed={handlePaymentConfirmed}
+                                    onLoginClick={handleLoginClick}
+                                />
+                            )}
 
-                        {currentStep === 'wallet-payment' && userWallet && (
-                            <WalletPaymentStep
-                                userWallet={userWallet}
-                                tokenLogo={paymentData.tokenLogo}
-                                onPayWithWallet={handlePayWithWallet}
-                                onLogout={handleLogout}
-                            />
-                        )}
+                            {currentStep === 'wallet-payment' && userWallet && (
+                                <WalletPaymentStep
+                                    userWallet={userWallet}
+                                    tokenLogo={paymentData.tokenLogo}
+                                    onPayWithWallet={handlePayWithWallet}
+                                    onLogout={handleLogout}
+                                />
+                            )}
+                        </aside>
+                    </div>
 
-                        {currentStep === 'confirmed' && <ConfirmedStep />}
-                    </aside>
-                </div>
-            </section>
+                    {/* Mobile Footer - Only show on mobile */}
+                    <div className='w-full h-[60px] flex md:hidden justify-center items-center mt-8'>
+                        <div className='w-full flex flex-col items-center gap-3'>
+                            <div className='flex items-center gap-2'>
+                                <span className='text-[#58556A] font-[400] font-poppins text-sm'>Powered by</span>
+                                <Image src={logo} alt='logo' className='w-[64px] h-[20px]' width={407} height={128} quality={100} priority />
+                            </div>
+
+                            <div className='flex items-center gap-3'>
+                                <Link href={'/'} className='text-[#58556A] text-xs font-[400] font-poppins'>Privacy</Link>
+                                <Link href={'/'} className='text-[#58556A] text-xs font-[400] font-poppins'>Terms</Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Login Dialog */}
             <LoginDialog

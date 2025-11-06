@@ -78,7 +78,7 @@ const PaymentSummary = ({
                 </div>
             </div>
 
-            <div className='w-full h-[60px] flex justify-start items-center'>
+            <div className='w-full h-[60px] hidden md:flex justify-start items-center'>
                 <div className='w-full flex items-center justify-between px-3'>
                     <div className='flex items-center gap-2'>
                         <span className='text-[#58556A] font-[400] font-poppins text-sm'>Powered by</span>
