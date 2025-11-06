@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react'
-import { z } from 'zod'
-import { emailSchema } from '@/types/payment'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { emailSchema, EmailInput } from '@/types/payment'
 
 interface EmailStepProps {
   onProceed: () => void
@@ -9,26 +9,28 @@ interface EmailStepProps {
 }
 
 const EmailStep = ({ onProceed, onLoginClick }: EmailStepProps) => {
-  const [email, setEmail] = useState('')
-  const [error, setError] = useState('')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid, isDirty },
+  } = useForm<EmailInput>({
+    resolver: zodResolver(emailSchema),
+    mode: 'onChange',
+  })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const onSubmit = async (data: EmailInput) => {
     try {
-      emailSchema.parse({ email })
+      console.log('Email submitted:', data.email)
       // TODO: Send email to API or save to state
       onProceed()
-      setError('')
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        setError(err.errors[0]?.message || 'Invalid email')
-      }
+    } catch (error) {
+      console.error('Failed to submit email:', error)
     }
   }
 
   return (
-    <div className="w-full md:w-[480px] flex flex-col gap-6">
-      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+    <div className="w-full lg:w-[480px] flex flex-col gap-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
         <div className="w-full flex flex-col gap-2">
           <label htmlFor="email" className="font-poppins text-[14px] text-[#58556A] leading-[24px]">
             Email address
@@ -36,19 +38,22 @@ const EmailStep = ({ onProceed, onLoginClick }: EmailStepProps) => {
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register('email')}
             placeholder="Enter email address"
             className="w-full rounded-[8px] border bg-[#F9FAFB] border-[#E5E7EB] shadow-navbarShadow h-[44px] font-poppins text-[14px] placeholder:text-[14px] placeholder:text-[#8E8C9C] text-primary px-4 outline-none transition duration-300 focus:border-accent"
           />
-          {error && <p className="text-xs text-rose-600">{error}</p>}
+          {errors.email && <p className="text-xs text-rose-600">{errors.email.message}</p>}
         </div>
 
         <button
           type="submit"
-          className="w-full h-[44px] flex justify-center items-center rounded-[8px] bg-accent text-white font-poppins font-[500] text-[14px] hover:opacity-90 transition-opacity"
+          disabled={!isDirty || !isValid || isSubmitting}
+          className={`w-full h-[44px] flex justify-center items-center rounded-[8px] font-poppins font-[500] text-[14px] transition-opacity ${!isDirty || !isValid || isSubmitting
+              ? 'bg-[#E5E7EB] text-[#9CA3AF] cursor-not-allowed'
+              : 'bg-accent text-white hover:opacity-90'
+            }`}
         >
-          Proceed to pay
+          {isSubmitting ? 'Processing...' : 'Proceed to pay'}
         </button>
       </form>
 

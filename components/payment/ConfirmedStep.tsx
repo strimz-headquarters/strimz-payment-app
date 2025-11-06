@@ -25,7 +25,7 @@ const ConfirmedStep = () => {
   }, [])
 
   return (
-    <div className="w-full h-full flex items-center justify-center py-20">
+    <div className="w-full flex items-center justify-center">
       {showConfetti && (
         <Confetti
           width={windowDimensions.width}
