@@ -1,12 +1,16 @@
 {
-    "name": "Strimz Subscriptions",
-    "short_name": "Strimz Subs",
-    "description": "Strimz Subscriptions is a DeFi utility that automates crypto payments for Web2 subscriptions and services via Strimz SDK, enabling seamless, secure, and efficient management of recurring payments with fiat.",
+    "name": "Strimz Subscription Platform",
+    "short_name": "Strimz",
+    "description": "A modern DeFi payment gateway that enables seamless cryptocurrency payments for Web2 subscriptions and recurring services. Pay for utility bills, subscriptions, and services using crypto (USDC/USDT).",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait-primary",
     "background_color": "#050020",
     "theme_color": "#2C2F5E",
-    "iconPath": "/favicon-32x32.png",
+    "categories": ["finance", "utilities", "productivity"],
+    "lang": "en-US",
+    "dir": "ltr",
     "icons": [
         {
             "src": "/favicon-192x192.png",
@@ -19,6 +23,15 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any"
         }
-    ]
+    ],
+    "screenshots": [],
+    "related_applications": [],
+    "prefer_related_applications": false
 }
