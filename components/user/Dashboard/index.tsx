@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
-import Alert from './Alert'
 import Image from 'next/image'
 import usdcIcon from "@/public/brands/USDC.svg"
 import usdtIcon from "@/public/brands/USDT.svg"
@@ -12,6 +11,7 @@ import Withdraw from './Withdraw'
 import baseIcon from "@/public/networks/base.webp"
 import { IoCopyOutline } from 'react-icons/io5'
 import { toast } from 'sonner'
+import Bills from './bills'
 
 /**
  * UserDashboardHome component renders the main dashboard interface for the user.
@@ -68,7 +68,6 @@ const UserDashboardHome = () => {
 
     return (
         <section className="w-full flex flex-col gap-3">
-            <Alert />
 
             <main className="w-full bg-[#F9FAFB] rounded-[16px] p-4 flex flex-col gap-1.5">
                 <h2 className="text-primary font-[500] font-poppins text-sm">Overview</h2>
@@ -127,6 +126,8 @@ const UserDashboardHome = () => {
                     </div>
                 </div>
             </main>
+
+            <Bills />
 
             <TransactionSummary />
         </section>

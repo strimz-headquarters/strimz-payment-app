@@ -1,28 +1,69 @@
-import WalletFundTx from "./WalletFundTx"
-import PayrollTx from "./PayrollTx"
-import WithdrawalTx from "./WithdrawalTx"
+import BillPaymentTx from "./BillPaymentTx"
+import netflixIcon from "@/public/history/netflix.png"
+import mtnIcon from "@/public/history/mtn.png"
+import airtelIcon from "@/public/history/airtel.png"
+import electricityIcon from "@/public/history/electricity.png"
+import tvIcon from "@/public/history/tv.png"
+import spotifyIcon from "@/public/history/spotify.png"
 
 /**
- * AllTx component renders a section with all the different types of transactions.
+ * AllTx component renders a section with all bill payment transactions.
  *
- * The component renders all the different types of transactions, including wallet funding,
- * payroll, and withdrawal transactions.
+ * The component renders all bill payment transactions including subscriptions,
+ * airtime, data, electricity, and cable payments.
  *
- * @returns {React.ReactElement} A section with all the different types of transactions.
+ * @returns {React.ReactElement} A section with all bill payment transactions.
  */
 const AllTx = () => {
     return (
-        <section className="w-full flex flex-col gap-2">
-            {/* walletfunding */}
-            <WalletFundTx title="USDT Wallet funding" date="10th Jun, 24 at 9:30AM" amount="1,000" status="In progress" token="USDT" />
-            <WalletFundTx title="USDC Wallet funding" date="20th April, 24 at 9:30AM" amount="10,000" status="Completed" token="USDC" />
-
-            {/* payroll */}
-            <PayrollTx title="Payment to contract employees" date="15th March, 24 at 10:30AM" amount="10,000" status="Completed" token="USDT" />
-            <PayrollTx title="Civil service payroll" date="30th Feburary, 24 at 8:30AM" amount="100,000" status="Failed" token="USDC" />
-
-            {/* widthdrawal */}
-            <WithdrawalTx title="Withdrawal from USDC wallet" date="9th Jan, 24 at 9:30AM" amount="500" status="Completed" token="USDC" />
+        <section className="w-full flex flex-col">
+            <div className="flex flex-col gap-1 mt-4">
+                <h3 className="text-[#58556A] font-[500] font-poppins text-sm">February 2025</h3>
+                <div className="w-full flex flex-col bg-white rounded-[12px]">
+                    <BillPaymentTx
+                        icon={netflixIcon}
+                        title="Netflix standard plan"
+                        date="Feb 10, 2025 · 9:30AM"
+                        amount="$8.00"
+                        status="Completed"
+                    />
+                    <BillPaymentTx
+                        icon={mtnIcon}
+                        title="MTN Airtime - 08030224350"
+                        date="Feb 10, 2025 · 9:30AM"
+                        amount="$2.50"
+                        status="Completed"
+                    />
+                    <BillPaymentTx
+                        icon={airtelIcon}
+                        title="Airtel Data-5GB - 08030224350"
+                        date="Feb 10, 2025 · 9:30AM"
+                        amount="$3.00"
+                        status="Completed"
+                    />
+                    <BillPaymentTx
+                        icon={electricityIcon}
+                        title="EEDC Electricity - 0023421092"
+                        date="Feb 10, 2025 · 9:30AM"
+                        amount="$32.50"
+                        status="Completed"
+                    />
+                    <BillPaymentTx
+                        icon={tvIcon}
+                        title="GOTV Max - 0023421092"
+                        date="Feb 10, 2025 · 9:30AM"
+                        amount="$2.50"
+                        status="Completed"
+                    />
+                    <BillPaymentTx
+                        icon={spotifyIcon}
+                        title="Spotify family plan"
+                        date="Feb 10, 2025 · 9:30AM"
+                        amount="$20.00"
+                        status="Completed"
+                    />
+                </div>
+            </div>
         </section>
     )
 }
