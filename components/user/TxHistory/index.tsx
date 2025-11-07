@@ -32,7 +32,7 @@ const TxHistory = () => {
                     <RxCaretLeft className="w-5 h-5" />
                     Back
                 </button>
-                <h3 className="font-[600] font-poppins text-2xl text-black">Transaction history</h3>
+                <h3 className="font-[600] font-poppins md:text-xl text-lg text-black">Transaction history</h3>
                 <p className="text-[#58556A] text-sm font-[400] font-poppins">Track and review all your payments</p>
             </div>
             {/* filters */}
