@@ -16,7 +16,6 @@ import {
 import { RxCaretDown } from 'react-icons/rx';
 import { PiUserCircleLight } from "react-icons/pi";
 import { IoIosHelpCircleOutline } from 'react-icons/io';
-import { MdOutlinePayment } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 
 
@@ -64,13 +63,7 @@ const UserDropdown: React.FC = () => {
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link href="/user/account/plan">
-                            <MdOutlinePayment />
-                            <span>Plans and billing</span>
-                        </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link href="/user/settings">
+                        <Link href="/user">
                             <IoIosHelpCircleOutline />
                             <span>Help</span>
                         </Link>
