@@ -2,44 +2,53 @@ import { FaqsTypes } from "@/types/guest";
 
 export const subscriptionFaqs: FaqsTypes[] = [
   {
-    question: "What is Strimz Subscriptions, and what can I use it for?",
+    question: "What is Strimz, and what can I use it for?",
     answer:
-      "Strimz Subscriptions is a DeFi utility that lets you pay for subscriptions, utilities, and airtime with crypto. No bank accounts are needed—just select a service like Netflix, Spotify, or your electricity bill, and pay directly from your wallet. Strimz automates the process, making payments fast, secure, and hassle-free.",
+      "Strimz is a payment infrastructure that bridges cryptocurrency and everyday services. As an individual, you can pay for utility bills, mobile airtime, data bundles, and cable TV subscriptions using crypto. As a business, you can integrate our SDK to accept crypto payments from your users while receiving fiat. No bank accounts needed—fast, secure, and seamless.",
   },
   {
-    question: "What services can I pay for with Strimz Subscriptions?",
+    question: "What services can I pay for with Strimz?",
     answer:
-      "You can use Strimz Subscriptions to pay for a variety of services with crypto, including streaming platforms like Netflix and Spotify, utilities such as rent, electricity, water, and internet bills, as well as mobile data and airtime top-ups. No bank card is required—just set up your payments, and Strimz handles the rest.",
+      "You can pay for electricity bills (prepaid and postpaid meters), mobile airtime top-ups, data bundles from various network providers, and cable TV subscriptions (DSTV, GOTV, Startimes, Showmax). Simply connect your wallet, select the service, and pay instantly with USDC or USDT.",
   },
   {
-    question: "What cryptocurrencies can I use with Strimz Subscriptions?",
+    question: "What cryptocurrencies does Strimz support?",
     answer:
-      "Strimz Subscriptions allows you to use stablecoins like USDC and USDT to make payments as an alternative to fiat. You can pay directly from your wallet without conversions, ensuring a seamless and efficient payment process.",
+      "Strimz currently supports stablecoins including USDC and USDT. Using stablecoins ensures predictable pricing without volatility—your $100 payment stays $100. You can pay directly from your wallet without conversions.",
   },
   {
-    question: "How fast are payments processed with Strimz Subscriptions?",
+    question: "How fast are payments processed?",
     answer:
-      "Payments with Strimz Subscriptions process quickly and instantly, keeping your services active without delays or bank approvals. Whether you're paying for a subscription, utility bill, or airtime, Strimz ensures your payments are completed in real-time.",
+      "Payments on Strimz process instantly, typically in under 5 seconds. Your services activate immediately with blockchain-verified payments. No waiting periods, no bank approvals—just instant confirmation and service activation.",
   },
   {
-    question:
-      "Can I set up recurring payments for utilities with Strimz Subscriptions?",
+    question: "How do I integrate Strimz SDK into my platform?",
     answer:
-      "Yes! Strimz Subscriptions lets you set up recurring payments for utilities like rent, electricity, water, and internet bills using crypto. You don't need to track due dates—Strimz ensures your payments are made on time, every time.",
+      "Integrating Strimz is simple. Sign up for a business account, get your API keys, and follow our documentation to integrate our RESTful API. You can configure webhooks for real-time notifications, manage your team, and access analytics through your business dashboard. Your users pay with crypto, and you receive fiat—we handle the complexity.",
   },
   {
-    question: "Is it safe to use Strimz Subscriptions for payments?",
+    question: "Is Strimz safe and secure?",
     answer:
-      "Yes! Strimz Subscriptions uses audited smart contracts and blockchain technology to ensure secure transactions. Web3 authentication also ensures only you can manage your payments.",
+      "Yes! Strimz uses blockchain technology to ensure secure transactions. All payments are verified on-chain, and we implement industry-standard security measures including IP whitelisting for business accounts, secure API key management, and encrypted data transmission. You maintain full control of your wallet and payments.",
   },
   {
-    question: "How does Strimz Subscriptions notify me about payments?",
+    question: "Do I need a bank account to use Strimz?",
     answer:
-      "Strimz Subscriptions sends real-time notifications via email to keep you updated on your payments. You'll be notified when a payment is due, processed, or if there's an issue, ensuring you're always in the loop.",
+      "No! That's the beauty of Strimz. As an individual user, you only need a crypto wallet to start paying for services. No bank account, no credit card—just connect your wallet and pay. For businesses integrating our SDK, you'll need to set up how you want to receive payments (fiat or crypto).",
   },
   {
-    question: "Is Strimz Subscriptions beginner-friendly for Web3 newcomers?",
+    question: "What are the fees for using Strimz?",
     answer:
-      "Yes! Strimz Subscriptions uses account abstraction to simplify wallet management, making it easy for Web2 users to get started. You can connect with popular wallet providers, and our user-friendly interface guides you through setting up and managing your payments with ease.",
+      "For individual users, we charge a small service fee per transaction, which is displayed before you confirm payment. For businesses integrating our SDK, pricing depends on your transaction volume. Contact our team or check your business dashboard for detailed pricing information.",
+  },
+  {
+    question: "Can I track my payment history?",
+    answer:
+      "Yes! Both individual users and businesses have access to comprehensive dashboards. View your complete transaction history, filter by service type or date, track your spending, and download transaction records. Businesses also get advanced analytics and reporting features.",
+  },
+  {
+    question: "What if I have an issue with a payment?",
+    answer:
+      "If you encounter any payment issues, you can reach out to our support team via email. We also provide real-time transaction status updates in your dashboard. For businesses, we offer dedicated support channels and webhook notifications to help you handle any payment-related issues with your users.",
   },
 ];

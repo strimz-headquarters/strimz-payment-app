@@ -21,22 +21,22 @@ const Features = () => {
                     {/* one */}
                     <div className='w-full flex flex-col p-4'>
                         <Image src={icon1} alt="icon" width={72} height={72} quality={100} priority />
-                        <h3 className='text-white font-sora font-[600] text-[24px] leading-[32px] mt-6'>Easy Payments</h3>
-                        <p className='text-[#BCBAC4] font-poppins font-[400] text-base leading-[28px] mt-2'>Pay for subscriptions, utilities, and airtime with crypto. No bank accounts needed—just select a service and pay.</p>
+                        <h3 className='text-white font-sora font-[600] text-[24px] leading-[32px] mt-6'>One-Click Payments</h3>
+                        <p className='text-[#BCBAC4] font-poppins font-[400] text-base leading-[28px] mt-2'>Pay for any service directly from your wallet in seconds. No lengthy forms, no bank approvals. Just connect and pay.</p>
                     </div>
 
                     {/* two */}
                     <div className='w-full flex flex-col p-4'>
                         <Image src={icon2} alt="icon" width={72} height={72} quality={100} priority />
-                        <h3 className='text-white font-sora font-[600] text-[24px] leading-[32px] mt-6'>Pay in crypto</h3>
-                        <p className='text-[#BCBAC4] font-poppins font-[400] leading-[28px] text-base mt-2'>Use your stablecoins to make payments as an alternative to fiat. Pay directly from your wallet without conversions.</p>
+                        <h3 className='text-white font-sora font-[600] text-[24px] leading-[32px] mt-6'>USDC & USDT Support</h3>
+                        <p className='text-[#BCBAC4] font-poppins font-[400] leading-[28px] text-base mt-2'>Use stablecoins for predictable pricing without volatility. Your $100 payment stays $100, no surprises.</p>
                     </div>
 
                     {/* three */}
                     <div className='w-full flex flex-col p-4'>
                         <Image src={icon3} alt="icon" width={72} height={72} quality={100} priority />
-                        <h3 className='text-white font-sora font-[600] text-[24px] leading-[32px] mt-6'>Fast transactions</h3>
-                        <p className='text-[#BCBAC4] font-poppins font-[400] leading-[28px] text-base mt-2'>Payments process quickly and instantly, keeping your services active without delays or bank approvals.</p>
+                        <h3 className='text-white font-sora font-[600] text-[24px] leading-[32px] mt-6'>Instant Confirmation</h3>
+                        <p className='text-[#BCBAC4] font-poppins font-[400] leading-[28px] text-base mt-2'>Your services activate immediately with blockchain-verified payments. No waiting, no delays.</p>
                     </div>
 
                 </main>
