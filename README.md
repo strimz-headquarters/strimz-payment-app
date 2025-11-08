@@ -1,52 +1,43 @@
 # Strimz Subscription Platform
 
-A modern DeFi payment gateway that enables seamless cryptocurrency payments for Web2 subscriptions and recurring services. Built with Next.js 14, TypeScript, and Tailwind CSS.
+A DeFi payment infrastructure that bridges cryptocurrency and everyday services. Built with Next.js 14, TypeScript, and Tailwind CSS.
 
 ## 📋 Overview
 
-Strimz Subscription Platform is a comprehensive payment solution that bridges the gap between cryptocurrency and traditional subscription services. Users can pay for their utility bills, subscriptions, and services using crypto (USDC/USDT), while businesses receive payments in their preferred currency.
+Strimz is a dual-purpose platform:
+- **B2C**: Individual users pay for utility bills (electricity, airtime, data, cable TV) using cryptocurrency
+- **B2B**: Businesses integrate Strimz SDK to accept crypto payments while receiving fiat
 
-### Key Features
+## ✨ Core Features
 
-#### For Users
-- 🏠 **Personalized Dashboard** - Track transactions, manage subscriptions, and monitor spending
-- 💳 **Utility Bill Payments** - Pay for electricity, data, airtime, and cable TV subscriptions
-- 📱 **Subscription Management** - Manage all your active subscriptions in one place
-- 📊 **Transaction History** - Detailed transaction logs with filtering and search capabilities
-- 🔐 **Secure Account Management** - Profile settings with password management and account security
-- 💰 **Multi-Token Support** - Pay with USDC or USDT
-- 🎉 **Instant Confirmations** - Real-time payment confirmations with confetti animations
+### User Dashboard (B2C)
+- Utility bill payments (electricity, airtime, data, cable TV)
+- Subscription management with status tracking
+- Transaction history with filtering
+- Account settings and security
+- USDC/USDT payment support
 
-#### For Businesses
-- 📈 **Business Dashboard** - Comprehensive analytics and transaction monitoring
-- 👥 **Customer Management** - Track and manage customer relationships
-- 🔑 **API Integration** - RESTful API with key management
-- 🌐 **Webhook Support** - Real-time event notifications
-- 🛡️ **IP Whitelisting** - Enhanced security with IP-based access control
-- 👨‍💼 **Team Management** - Multi-user access with role-based permissions
-- 💼 **Payment Processing** - Accept crypto payments, receive fiat
+### Business Dashboard (B2B)
+- API key management
+- Webhook configuration
+- Customer analytics and insights
+- Team management with role-based access
+- IP whitelisting
+- Transaction monitoring
 
 ## 🚀 Tech Stack
 
-### Frontend
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **UI Components:** Radix UI, Shadcn/ui
-- **Form Management:** React Hook Form + Zod validation
-- **State Management:** TanStack Query (React Query)
+- **UI Components:** Radix UI (Dialog, Select, Tabs, Accordion)
+- **Forms:** React Hook Form + Zod validation
+- **State:** TanStack Query (React Query)
+- **Web3:** Wagmi, Viem, Reown AppKit
 - **Animations:** Framer Motion, React Confetti
-- **Icons:** React Icons, Lucide React
-
-### Web3 Integration
-- **Wallet Connection:** Reown AppKit (formerly WalletConnect)
-- **Web3 Library:** Wagmi, Viem
-- **Supported Networks:** Ethereum, Polygon, BSC
-
-### Additional Libraries
+- **Icons:** Lucide React, React Icons
+- **Notifications:** Sonner (Toast)
 - **Charts:** Recharts
-- **Notifications:** Sonner
-- **QR Codes:** qrcode.react
 - **Tables:** TanStack Table
 
 ## 🛠️ Getting Started
@@ -115,82 +106,97 @@ bun dev
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
-## 🎨 Features Breakdown
+## 📁 Project Structure
 
-### User Dashboard
-- **Transaction Summary** - Recent payment activities with status indicators
-- **Quick Actions** - Fast access to bill payments and subscriptions
-- **Wallet Integration** - Connect and manage crypto wallets
-- **Payment History** - Comprehensive transaction logs with filters
+```
+strimz-sdk/
+├── app/
+│   ├── (guest)/              # Public landing pages
+│   ├── user/                 # B2C user dashboard routes
+│   │   ├── dashboard/        # User overview and quick actions
+│   │   ├── utility-bills/    # Airtime, data, electricity, cable TV
+│   │   ├── subscriptions/    # Subscription management
+│   │   ├── tx-history/       # Transaction history
+│   │   └── account/          # User account settings
+│   ├── business/             # B2B business dashboard routes
+│   │   ├── dashboard/        # Business analytics
+│   │   ├── api-keys/         # API key management
+│   │   ├── webhooks/         # Webhook configuration
+│   │   └── team/             # Team management
+│   └── auth/                 # Authentication flows
+├── components/
+│   ├── guest/                # Landing page components
+│   ├── user/                 # B2C dashboard components
+│   └── business/             # B2B dashboard components
+├── utils/                    # Utility functions and helpers
+└── public/                   # Static assets
+```
 
-### Utility Bill Payments
-- **Airtime Top-up** - Purchase mobile airtime with crypto
-- **Data Bundles** - Buy internet data plans
-- **Electricity Bills** - Pay for prepaid/postpaid meters
-- **Cable TV Subscriptions** - DSTV, GOTV, Startimes subscriptions
+## 🔑 Key Development Patterns
 
-### Subscription Management
-- **Active Subscriptions** - View and manage ongoing subscriptions
-- **Subscription History** - Track expired and cancelled subscriptions
-- **Renewal Management** - Quick renewal options
-- **Plan Updates** - Change subscription plans
+### Form Validation
+All forms use React Hook Form with Zod schemas for type-safe validation:
+```typescript
+const schema = z.object({
+  email: z.string().email('Invalid email address'),
+  amount: z.string().min(1, 'Amount is required')
+})
 
-### Business Dashboard
-- **Analytics** - Revenue tracking and customer insights
-- **API Management** - Generate and manage API keys
-- **Webhooks** - Configure webhook endpoints for events
-- **Team Collaboration** - Add team members with roles
+const { register, handleSubmit, formState: { errors } } = useForm({
+  resolver: zodResolver(schema)
+})
+```
 
-## 🔒 Security Features
+### Dialog Components
+Uses Radix UI Dialog with controlled state:
+```typescript
+const [isOpen, setIsOpen] = useState(false)
 
-- Zod schema validation for all forms
-- IP whitelisting for business accounts
-- Secure password requirements (min 8 chars, uppercase, numbers)
-- Protected routes and authentication flows
-- Environment variable encryption
+<Dialog open={isOpen} onOpenChange={setIsOpen}>
+  <DialogContent>
+    {/* Dialog content */}
+  </DialogContent>
+</Dialog>
+```
 
-## 🎯 Payment Flow
+### Inline Editing
+Account settings use inline edit pattern:
+```typescript
+const [isEditing, setIsEditing] = useState(false)
+const [inputValue, setInputValue] = useState(currentValue)
 
-1. **User Selection** - Choose service (airtime, data, bills, etc.)
-2. **Form Completion** - Enter payment details and amount
-3. **Token Selection** - Choose USDC or USDT
-4. **Wallet Connection** - Connect crypto wallet
-5. **Transaction Confirmation** - Approve blockchain transaction
-6. **Success Notification** - Confetti animation and confirmation
+// Save updates the state and exits edit mode
+// Cancel resets inputValue and exits edit mode
+```
+
+## 🎨 Design System
+
+- **Fonts**: Sora (headings), Poppins (body text)
+- **Primary Color**: `#161318` (dark text)
+- **Accent Color**: `#02C76A` (green - buttons, highlights)
+- **Background**: White with subtle grays for sections
+- **Component Library**: Radix UI for accessible primitives
+- **Responsive**: Mobile-first with `md:` and `lg:` breakpoints
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
-
-The easiest way to deploy is using [Vercel](https://vercel.com):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/strimz-headquarters/strimz-sdk)
-
-### Manual Deployment
-
-1. Build the project:
+**Build for production:**
 ```bash
 npm run build
+npm start
 ```
 
-2. Deploy the `.next` folder to your hosting provider.
+**Vercel (recommended):**
+```bash
+vercel
+```
 
-3. Set environment variables in your hosting dashboard.
+Set required environment variables in your deployment platform dashboard.
 
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Coding Standards
+## 🤝 Development Guidelines
 
 - Use TypeScript for all new files
-- Follow the existing code style
+- Follow existing component patterns (see components/business/Dashboard/Withdraw.tsx for dialog examples)
+- Use Zod schemas for form validation
 - Write meaningful commit messages
-- Add comments for complex logic
-- Test your changes thoroughly
+- Test changes before committing
