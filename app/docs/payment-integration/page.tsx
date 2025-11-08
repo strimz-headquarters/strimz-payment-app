@@ -11,11 +11,23 @@ export const metadata: Metadata = {
         title: 'Payment Integration with Strimz SDK',
         description: 'Implement one-time and recurring subscription payments with crypto for your platform.',
         type: 'article',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Payment Integration',
+            },
+        ],
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'Payment Integration with Strimz SDK',
         description: 'Implement one-time and recurring subscription payments with crypto for your platform.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Payment Integration',
+            },
+        ],
     },
 }
 

@@ -11,11 +11,23 @@ export const metadata: Metadata = {
         title: 'Webhooks - Strimz SDK',
         description: 'Receive real-time payment notifications with secure webhook implementation.',
         type: 'article',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Webhooks',
+            },
+        ],
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'Webhooks - Strimz SDK',
         description: 'Receive real-time payment notifications with secure webhook implementation.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Webhooks',
+            },
+        ],
     },
 }
 

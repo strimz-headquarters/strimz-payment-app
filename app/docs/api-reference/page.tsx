@@ -10,11 +10,23 @@ export const metadata: Metadata = {
         title: 'API Reference - Strimz SDK',
         description: 'Complete SDK methods, REST endpoints, and API documentation.',
         type: 'article',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - API Reference',
+            },
+        ],
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'API Reference - Strimz SDK',
         description: 'Complete SDK methods, REST endpoints, and API documentation.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - API Reference',
+            },
+        ],
     },
 }
 
