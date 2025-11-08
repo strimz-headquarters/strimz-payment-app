@@ -1,29 +1,33 @@
-# Strimz Subscription Platform
+# Strimz Payment Platform
 
-A DeFi payment infrastructure that bridges cryptocurrency and everyday services. Built with Next.js 14, TypeScript, and Tailwind CSS.
+A crypto payment gateway that enables businesses to accept one-time payments and recurring subscriptions using USDC and USDT stablecoins. Built with Next.js 14, TypeScript, and Tailwind CSS.
 
 ## 📋 Overview
 
-Strimz is a dual-purpose platform:
-- **B2C**: Individual users pay for utility bills (electricity, airtime, data, cable TV) using cryptocurrency
-- **B2B**: Businesses integrate Strimz SDK to accept crypto payments while receiving fiat
+Strimz is a comprehensive payment platform with:
+- **Strimz SDK**: An npm package for businesses to integrate crypto payment infrastructure with "Pay with Strimz" button
+- **Business Dashboard**: Manage API keys, webhooks, customers, and transactions
+- **User Dashboard**: For end-users to manage their subscriptions and payment history
 
 ## ✨ Core Features
 
-### User Dashboard (B2C)
-- Utility bill payments (electricity, airtime, data, cable TV)
-- Subscription management with status tracking
-- Transaction history with filtering
+### User Dashboard
+- Active subscription management with status tracking
+- Transaction history with filtering and search
+- Payment method management
 - Account settings and security
 - USDC/USDT payment support
+- Subscription pause/cancel functionality
 
-### Business Dashboard (B2B)
-- API key management
-- Webhook configuration
-- Customer analytics and insights
+### Business Dashboard
+- API key management (live and test modes)
+- Webhook configuration and testing
+- Customer subscription analytics
+- Revenue insights and metrics
+- Transaction monitoring and reporting
 - Team management with role-based access
-- IP whitelisting
-- Transaction monitoring
+- IP whitelisting for security
+- Integration documentation and examples
 
 ## 🚀 Tech Stack
 
@@ -112,25 +116,66 @@ bun dev
 strimz-sdk/
 ├── app/
 │   ├── (guest)/              # Public landing pages
-│   ├── user/                 # B2C user dashboard routes
-│   │   ├── dashboard/        # User overview and quick actions
-│   │   ├── utility-bills/    # Airtime, data, electricity, cable TV
-│   │   ├── subscriptions/    # Subscription management
+│   ├── docs/                 # SDK documentation pages
+│   │   ├── getting-started/  # Installation and quick start
+│   │   ├── authentication/   # API key authentication
+│   │   ├── payment-integration/  # Payment flow implementation
+│   │   ├── webhooks/         # Webhook setup and verification
+│   │   ├── api-reference/    # Complete API reference
+│   │   └── error-handling/   # Error codes and debugging
+│   ├── user/                 # User dashboard routes
+│   │   ├── dashboard/        # User overview
+│   │   ├── subscriptions/    # Active subscription management
 │   │   ├── tx-history/       # Transaction history
 │   │   └── account/          # User account settings
-│   ├── business/             # B2B business dashboard routes
-│   │   ├── dashboard/        # Business analytics
-│   │   ├── api-keys/         # API key management
-│   │   ├── webhooks/         # Webhook configuration
-│   │   └── team/             # Team management
-│   └── auth/                 # Authentication flows
+│   ├── business/             # Business dashboard routes
+│   │   ├── dashboard/        # Business analytics and metrics
+│   │   ├── customers/        # Customer management
+│   │   ├── transactions/     # Transaction monitoring
+│   │   └── account/          # API keys, webhooks, team settings
+│   └── auth/                 # Authentication flows (user & business)
 ├── components/
 │   ├── guest/                # Landing page components
-│   ├── user/                 # B2C dashboard components
-│   └── business/             # B2B dashboard components
+│   ├── docs/                 # Documentation components (CodeBlock)
+│   ├── user/                 # User dashboard components
+│   └── business/             # Business dashboard components
 ├── utils/                    # Utility functions and helpers
 └── public/                   # Static assets
 ```
+
+## 📦 Strimz SDK (npm package)
+
+The Strimz SDK will be published as an npm package (`@strimz/sdk`) that allows businesses to integrate crypto payment functionality:
+
+### Features
+- **One-time payments**: Accept single payments for products or services
+- **Recurring subscriptions**: Automated billing with daily, weekly, monthly, or yearly intervals
+- **React components**: Pre-built `<StrimzButton>` and payment modal
+- **TypeScript support**: Full type definitions for better developer experience
+- **Webhook integration**: Real-time payment notifications
+- **Server-side SDK**: Transaction verification and webhook signature validation
+- **Test mode**: Sandbox environment for testing without real payments
+
+### Quick Example
+```typescript
+import { StrimzSDK } from '@strimz/sdk'
+
+const strimz = new StrimzSDK({
+  publicKey: 'STRZlive_your_public_key',
+  environment: 'live'
+})
+
+// Initialize subscription payment
+const result = await strimz.initializePayment({
+  amount: 2999,  // $29.99/month
+  currency: 'USD',
+  paymentType: 'subscription',
+  interval: 'monthly',
+  customerEmail: 'customer@example.com'
+})
+```
+
+See `/app/docs` for complete SDK documentation.
 
 ## 🔑 Key Development Patterns
 
