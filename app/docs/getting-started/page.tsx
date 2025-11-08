@@ -11,11 +11,23 @@ export const metadata: Metadata = {
         title: 'Getting Started with Strimz SDK',
         description: 'Integrate Strimz SDK and start accepting crypto payments in minutes.',
         type: 'article',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Getting Started',
+            },
+        ],
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'Getting Started with Strimz SDK',
         description: 'Integrate Strimz SDK and start accepting crypto payments in minutes.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Getting Started',
+            },
+        ],
     },
 }
 

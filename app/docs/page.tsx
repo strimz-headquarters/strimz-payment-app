@@ -10,11 +10,23 @@ export const metadata: Metadata = {
         title: 'Strimz SDK Documentation',
         description: 'Crypto payment gateway supporting one-time and recurring subscription payments with USDC and USDT.',
         type: 'website',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation',
+            },
+        ],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Strimz SDK Documentation',
         description: 'Crypto payment gateway supporting one-time and recurring subscription payments with USDC and USDT.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation',
+            },
+        ],
     },
 }
 

@@ -10,11 +10,23 @@ export const metadata: Metadata = {
         title: 'Error Handling - Strimz SDK',
         description: 'Error codes reference, retry strategies, and debugging tips for Strimz SDK.',
         type: 'article',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Error Handling',
+            },
+        ],
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'Error Handling - Strimz SDK',
         description: 'Error codes reference, retry strategies, and debugging tips for Strimz SDK.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Error Handling',
+            },
+        ],
     },
 }
 

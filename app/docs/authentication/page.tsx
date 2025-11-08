@@ -11,11 +11,23 @@ export const metadata: Metadata = {
         title: 'Authentication with Strimz SDK',
         description: 'Securely authenticate API requests with Strimz API keys and follow security best practices.',
         type: 'article',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Authentication',
+            },
+        ],
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'Authentication with Strimz SDK',
         description: 'Securely authenticate API requests with Strimz API keys and follow security best practices.',
+        images: [
+            {
+                url: '/thumbnail-docs.png',
+                alt: 'Strimz SDK Documentation - Authentication',
+            },
+        ],
     },
 }
 
