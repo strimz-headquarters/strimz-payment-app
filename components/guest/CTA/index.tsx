@@ -27,7 +27,7 @@ const CTA = () => {
         <section className="w-full bg-primary md:py-20 py-16">
             <main className='w-full flex flex-col items-center'>
                 <div className="w-full flex flex-col items-center gap-4 max-w-[812px] lg:px-0  px-6 mb-8">
-                    <h3 className="text-white font-[700] md:text-[64px] text-[45px] md:leading-[70px] leading-[48px] font-sora text-center">
+                    <h3 className="text-white font-[700] lg:text-[52px] md:text-[46px] text-[36px] lg:leading-[52px] md:leading-[46px] leading-[36px] font-sora text-center">
                         Pay your bills and subscriptions with Strimz
                     </h3>
                     <p className='w-full max-w-[522px] font-poppins text-white font-[400] text-base leading-[28px] text-center'>Fast, secure, and hassle-free payments for streaming services, utilities, and mobile airtime. crypto payments made easy. </p>
