@@ -2,12 +2,16 @@ import { footerLinksTypes, NavLinkTypes } from "@/types/guest";
 
 export const navLinks: NavLinkTypes[] = [
   {
-    name: "Benefits",
-    to: "benefits",
-  },
-  {
     name: "Features",
     to: "features",
+  },
+  {
+    name: "How it Works",
+    to: "howItWorks",
+  },
+  {
+    name: "Benefits",
+    to: "benefits",
   },
   {
     name: "FAQs",
