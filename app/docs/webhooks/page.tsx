@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Webhook, Shield, Code, CheckCircle } from 'lucide-react'
+import CodeBlock from '@/components/docs/CodeBlock'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -165,9 +166,9 @@ export default function Webhooks() {
                     All webhooks are sent as POST requests with the following structure:
                 </p>
 
-                <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                    <pre className="text-[#d4d4d4] font-mono text-sm">
-                        {`{
+                <CodeBlock
+                        language="json"
+                        code={`{
   "event": "payment.success",
   "data": {
     "transactionId": "trx_1234567890abcdef",
@@ -190,8 +191,7 @@ export default function Webhooks() {
   },
   "signature": "sha256_signature_here"
 }`}
-                    </pre>
-                </div>
+                    />
             </div>
 
             {/* Implementation Examples */}
@@ -201,9 +201,9 @@ export default function Webhooks() {
                 {/* Node.js/Express */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">Node.js / Express</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`import express from 'express'
+                    <CodeBlock
+                        language="javascript"
+                        code={`import express from 'express'
 import crypto from 'crypto'
 
 const app = express()
@@ -254,16 +254,15 @@ app.post('/api/webhooks/strimz', (req, res) => {
 })
 
 app.listen(3000, () => console.log('Webhook server running on port 3000'))`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Next.js API Route */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">Next.js API Route</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`// app/api/webhooks/strimz/route.ts
+                    <CodeBlock
+                        language="typescript"
+                        code={`// app/api/webhooks/strimz/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 
@@ -319,8 +318,7 @@ async function updatePaymentStatus(transactionId: string, status: string) {
   // Your database update logic
   console.log(\`Updating transaction \${transactionId} to \${status}\`)
 }`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 
@@ -395,7 +393,7 @@ async function updatePaymentStatus(transactionId: string, status: string) {
                         <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                             Use test API keys to trigger test webhooks
                         </p>
-                        <code className="text-xs bg-[#0a0a0a] px-2 py-1 rounded">environment: 'test'</code>
+                        <code className="text-xs bg-[#0a0a0a] px-2 py-1 rounded">environment: &apos;test&apos;</code>
                     </div>
                 </div>
             </div>

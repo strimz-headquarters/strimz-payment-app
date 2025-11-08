@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { ArrowRight, Terminal, CheckCircle } from 'lucide-react'
 import type { Metadata } from 'next'
+import CodeBlock from '@/components/docs/CodeBlock'
 
 export const metadata: Metadata = {
     title: 'Getting Started - Strimz SDK Documentation',
@@ -52,7 +53,7 @@ export default function GettingStarted() {
                 </ul>
                 <div className="mt-4 p-4 bg-accent/10 border border-accent/20 rounded-[8px]">
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm">
-                        <strong className="text-white">Don't have API keys yet?</strong>{' '}
+                        <strong className="text-white">Don&apos;t have API keys yet?</strong>{' '}
                         <Link href="/auth/business/signup" className="text-accent hover:underline">
                             Sign up for a business account
                         </Link>{' '}
@@ -111,7 +112,7 @@ export default function GettingStarted() {
             <div className="mb-12">
                 <h2 className="text-white font-sora font-[600] text-2xl mb-4">Quick Start</h2>
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-base mb-6">
-                    Here's a basic example to get you started with Strimz SDK:
+                    Here&apos;s a basic example to get you started with Strimz SDK:
                 </p>
 
                 {/* Step 1: Initialize */}
@@ -120,40 +121,40 @@ export default function GettingStarted() {
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                         First, initialize the Strimz SDK with your public API key:
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-{`import { StrimzSDK } from '@strimz/sdk'
+                    <CodeBlock
+                        language="typescript"
+                        code={`import { StrimzSDK } from '@strimz/sdk'
 
 // Initialize with your public key
 const strimz = new StrimzSDK({
   publicKey: 'STRZlive_your_public_key_here',
   environment: 'live' // or 'test' for testing
 })`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Step 2: Add Payment Button */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">2. Add the Payment Button</h3>
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
-                        Add the "Pay with Strimz" button to your application:
+                        Add the &quot;Pay with Strimz&quot; button to your application:
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-{`import { StrimzButton } from '@strimz/sdk'
+                    <CodeBlock
+                        language="typescript"
+                        code={`import { StrimzButton } from '@strimz/sdk'
 
 function PaymentPage() {
   const handlePayment = async () => {
     try {
       const payment = await strimz.initializePayment({
-        amount: 5000, // Amount in cents ($50.00)
+        amount: 2999, // Amount in cents ($29.99)
         currency: 'USD',
-        serviceType: 'electricity',
+        paymentType: 'subscription',
+        interval: 'monthly',
         customerEmail: 'customer@example.com',
         metadata: {
-          meterNumber: '1234567890',
-          customerName: 'John Doe'
+          planId: 'plan_pro_monthly',
+          planName: 'Pro Plan'
         }
       })
 
@@ -170,8 +171,7 @@ function PaymentPage() {
     />
   )
 }`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Step 3: Handle Response */}
@@ -180,21 +180,20 @@ function PaymentPage() {
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                         Process the payment response and update your UI:
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-{`const handlePayment = async () => {
+                    <CodeBlock
+                        language="typescript"
+                        code={`const handlePayment = async () => {
   try {
     const result = await strimz.initializePayment({
-      amount: 5000,
+      amount: 9999,
       currency: 'USD',
-      serviceType: 'electricity',
+      paymentType: 'one-time',
       customerEmail: 'customer@example.com'
     })
 
     if (result.status === 'success') {
       // Payment successful
       console.log('Transaction ID:', result.transactionId)
-      console.log('Receipt:', result.receipt)
 
       // Update your UI or redirect user
       showSuccessMessage('Payment completed successfully!')
@@ -205,8 +204,7 @@ function PaymentPage() {
     showErrorMessage('Payment failed. Please try again.')
   }
 }`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 
@@ -216,17 +214,16 @@ function PaymentPage() {
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-base mb-4">
                     Store your API keys securely using environment variables:
                 </p>
-                <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                    <pre className="text-[#d4d4d4] font-mono text-sm">
-{`# .env.local
+                <CodeBlock
+                    language="bash"
+                    code={`# .env.local
 NEXT_PUBLIC_STRIMZ_PUBLIC_KEY=STRZlive_your_public_key
 STRIMZ_SECRET_KEY=STRZ_your_secret_key
 
 # For testing
 NEXT_PUBLIC_STRIMZ_TEST_PUBLIC_KEY=STRZtest_your_test_public_key
 STRIMZ_TEST_SECRET_KEY=STRZtest_your_test_secret_key`}
-                    </pre>
-                </div>
+                />
                 <div className="mt-4 p-4 bg-yellow-950/20 border border-yellow-700/30 rounded-[8px]">
                     <p className="text-sm text-yellow-300 font-poppins">
                         <strong>⚠️ Security Warning:</strong> Never expose your secret key in client-side code. Only use the public key on the frontend.
@@ -240,14 +237,13 @@ STRIMZ_TEST_SECRET_KEY=STRZtest_your_test_secret_key`}
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-base mb-4">
                     Use test mode to verify your integration without processing real payments:
                 </p>
-                <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto mb-4">
-                    <pre className="text-[#d4d4d4] font-mono text-sm">
-{`const strimz = new StrimzSDK({
+                <CodeBlock
+                    language="typescript"
+                    code={`const strimz = new StrimzSDK({
   publicKey: process.env.NEXT_PUBLIC_STRIMZ_TEST_PUBLIC_KEY,
   environment: 'test' // Use test mode
 })`}
-                    </pre>
-                </div>
+                />
                 <div className="p-4 bg-[#1a1a1a] border border-[#2a2a2a] rounded-[8px]">
                     <h4 className="text-white font-poppins font-[600] text-sm mb-2">Test Mode Features:</h4>
                     <ul className="space-y-2">

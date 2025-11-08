@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import { Zap, CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
+import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
 import type { Metadata } from 'next'
+import CodeBlock from '@/components/docs/CodeBlock'
 
 export const metadata: Metadata = {
     title: 'Payment Integration - Strimz SDK Documentation',
@@ -60,25 +61,23 @@ export default function PaymentIntegration() {
                 </div>
             </div>
 
-            {/* Service Types */}
+            {/* Payment Types */}
             <div className="mb-12">
-                <h2 className="text-white font-sora font-[600] text-2xl mb-4">Supported Service Types</h2>
+                <h2 className="text-white font-sora font-[600] text-2xl mb-4">Supported Payment Types</h2>
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-base mb-6">
-                    Strimz supports payments for the following service types:
+                    Strimz supports the following payment types for your business:
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4">
                     {[
-                        { type: 'electricity', name: 'Electricity Bills', desc: 'Prepaid and postpaid meter payments' },
-                        { type: 'airtime', name: 'Mobile Airtime', desc: 'Top-ups for all major networks' },
-                        { type: 'data', name: 'Data Bundles', desc: 'Internet data plans' },
-                        { type: 'cable', name: 'Cable TV', desc: 'DSTV, GOTV, Startimes, Showmax subscriptions' }
+                        { type: 'one-time', name: 'One-time Payments', desc: 'Single checkout payments for products or services' },
+                        { type: 'subscription', name: 'Recurring Subscriptions', desc: 'Automated billing cycles (daily, weekly, monthly, yearly)' }
                     ].map((service) => (
                         <div key={service.type} className="p-4 border border-[#2a2a2a] rounded-[8px] bg-[#1a1a1a]">
                             <h4 className="text-white font-poppins font-[600] text-base mb-1">{service.name}</h4>
                             <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-2">{service.desc}</p>
                             <code className="px-2 py-1 bg-[#0a0a0a] border border-[#2a2a2a] rounded text-xs text-accent">
-                                serviceType: '{service.type}'
+                                paymentType: &apos;{service.type}&apos;
                             </code>
                         </div>
                     ))}
@@ -92,9 +91,9 @@ export default function PaymentIntegration() {
                 {/* React Example */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">React / Next.js</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`'use client'
+                    <CodeBlock
+                        language="tsx"
+                        code={`'use client'
 import { useState } from 'react'
 import { StrimzSDK } from '@strimz/sdk'
 
@@ -154,16 +153,15 @@ export function PaymentButton() {
     </div>
   )
 }`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Vanilla JS Example */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">Vanilla JavaScript</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`import { StrimzSDK } from '@strimz/sdk'
+                    <CodeBlock
+                        language="javascript"
+                        code={`import { StrimzSDK } from '@strimz/sdk'
 
 const strimz = new StrimzSDK({
   publicKey: 'STRZlive_your_public_key',
@@ -194,8 +192,7 @@ paymentButton.addEventListener('click', async () => {
     alert('Payment failed: ' + error.message)
   }
 })`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 
@@ -239,7 +236,7 @@ paymentButton.addEventListener('click', async () => {
                                 <td className="border border-[#2a2a2a] px-4 py-3 text-[#a0a0a0] font-mono text-sm">customerEmail</td>
                                 <td className="border border-[#2a2a2a] px-4 py-3 text-[#a0a0a0] font-mono text-sm">string</td>
                                 <td className="border border-[#2a2a2a] px-4 py-3 text-[#a0a0a0] font-poppins text-sm">Yes</td>
-                                <td className="border border-[#2a2a2a] px-4 py-3 text-[#a0a0a0] font-poppins text-sm">Customer's email address for receipt</td>
+                                <td className="border border-[#2a2a2a] px-4 py-3 text-[#a0a0a0] font-poppins text-sm">Customer&apos;s email address for receipt</td>
                             </tr>
                             <tr>
                                 <td className="border border-[#2a2a2a] px-4 py-3 text-[#a0a0a0] font-mono text-sm">metadata</td>
@@ -271,20 +268,18 @@ paymentButton.addEventListener('click', async () => {
                     The payment response includes the following structure:
                 </p>
 
-                <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto mb-6">
-                    <pre className="text-[#d4d4d4] font-mono text-sm">
-                        {`// Success Response
+                <CodeBlock
+                    language="json"
+                    code={`// Success Response
 {
   "status": "success",
   "transactionId": "trx_1234567890abcdef",
-  "amount": 5000,
+  "amount": 2999,
   "currency": "USD",
-  "serviceType": "electricity",
-  "receipt": {
-    "tokenCode": "1234-5678-9012",
-    "units": "50 kWh",
-    "providerRef": "IKEJA-REF-123456"
-  },
+  "paymentType": "subscription",
+  "interval": "monthly",
+  "subscriptionId": "sub_abc123xyz",
+  "nextBillingDate": "2025-02-08T10:30:00Z",
   "timestamp": "2025-01-08T10:30:00Z"
 }
 
@@ -295,8 +290,7 @@ paymentButton.addEventListener('click', async () => {
   "message": "Insufficient wallet balance",
   "timestamp": "2025-01-08T10:30:00Z"
 }`}
-                    </pre>
-                </div>
+                />
 
                 <div className="space-y-4">
                     <div className="p-4 border border-green-700/30 bg-green-950/20 rounded-[8px]">
@@ -346,9 +340,9 @@ paymentButton.addEventListener('click', async () => {
                         <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                             Accept a single payment for a product or service:
                         </p>
-                        <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                            <pre className="text-[#d4d4d4] font-mono text-sm">
-                                {`const result = await strimz.initializePayment({
+                        <CodeBlock
+                            language="typescript"
+                            code={`const result = await strimz.initializePayment({
   amount: 9999, // $99.99
   currency: 'USD',
   paymentType: 'one-time',
@@ -359,8 +353,7 @@ paymentButton.addEventListener('click', async () => {
     orderId: 'order_xyz789'
   }
 })`}
-                            </pre>
-                        </div>
+                        />
                     </div>
 
                     {/* Monthly Subscription */}
@@ -369,9 +362,9 @@ paymentButton.addEventListener('click', async () => {
                         <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                             Set up automated monthly recurring payments:
                         </p>
-                        <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                            <pre className="text-[#d4d4d4] font-mono text-sm">
-                                {`const result = await strimz.initializePayment({
+                        <CodeBlock
+                            language="typescript"
+                            code={`const result = await strimz.initializePayment({
   amount: 2999, // $29.99/month
   currency: 'USD',
   paymentType: 'subscription',
@@ -383,8 +376,7 @@ paymentButton.addEventListener('click', async () => {
     userId: 'user_123'
   }
 })`}
-                            </pre>
-                        </div>
+                        />
                     </div>
 
                     {/* Yearly Subscription */}
@@ -393,9 +385,9 @@ paymentButton.addEventListener('click', async () => {
                         <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                             Annual billing with automated renewal:
                         </p>
-                        <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                            <pre className="text-[#d4d4d4] font-mono text-sm">
-                                {`const result = await strimz.initializePayment({
+                        <CodeBlock
+                            language="typescript"
+                            code={`const result = await strimz.initializePayment({
   amount: 29999, // $299.99/year
   currency: 'USD',
   paymentType: 'subscription',
@@ -408,8 +400,7 @@ paymentButton.addEventListener('click', async () => {
     discount: '20% annual discount'
   }
 })`}
-                            </pre>
-                        </div>
+                        />
                     </div>
 
                     {/* Custom Interval Subscription */}
@@ -418,9 +409,9 @@ paymentButton.addEventListener('click', async () => {
                         <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                             Weekly, daily, or custom billing cycles:
                         </p>
-                        <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                            <pre className="text-[#d4d4d4] font-mono text-sm">
-                                {`const result = await strimz.initializePayment({
+                        <CodeBlock
+                            language="typescript"
+                            code={`const result = await strimz.initializePayment({
   amount: 999, // $9.99/week
   currency: 'USD',
   paymentType: 'subscription',
@@ -432,8 +423,7 @@ paymentButton.addEventListener('click', async () => {
     userId: 'user_123'
   }
 })`}
-                            </pre>
-                        </div>
+                        />
                     </div>
                 </div>
             </div>

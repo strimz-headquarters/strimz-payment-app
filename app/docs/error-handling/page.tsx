@@ -1,6 +1,7 @@
 import React from 'react'
 import { AlertCircle, XCircle, AlertTriangle, Info } from 'lucide-react'
 import type { Metadata } from 'next'
+import CodeBlock from '@/components/docs/CodeBlock'
 
 export const metadata: Metadata = {
     title: 'Error Handling - Strimz SDK Documentation',
@@ -36,9 +37,9 @@ export default function ErrorHandling() {
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-base mb-4">
                     All errors follow a consistent structure:
                 </p>
-                <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                    <pre className="text-[#d4d4d4] font-mono text-sm">
-                        {`{
+                <CodeBlock
+                        language="json"
+                        code={`{
   "status": "error",
   "code": "ERROR_CODE",
   "message": "Human-readable error message",
@@ -47,8 +48,7 @@ export default function ErrorHandling() {
   },
   "timestamp": "2025-01-08T10:30:00Z"
 }`}
-                    </pre>
-                </div>
+                    />
             </div>
 
             {/* Common Error Codes */}
@@ -110,7 +110,7 @@ export default function ErrorHandling() {
                                         <span className="text-xs text-red-400">400</span>
                                     </div>
                                     <p className="text-red-300 font-poppins font-[400] text-sm">
-                                        User's wallet has insufficient funds for the transaction.
+                                        User&apos;s wallet has insufficient funds for the transaction.
                                     </p>
                                     <div className="mt-2 p-2 bg-red-950/20 rounded text-xs text-red-200">
                                         <strong>Solution:</strong> Ask user to add funds to their wallet or use a different wallet.
@@ -211,7 +211,7 @@ export default function ErrorHandling() {
                                     <span className="text-xs text-orange-400">429</span>
                                 </div>
                                 <p className="text-orange-300 font-poppins font-[400] text-sm">
-                                    Too many requests. You've exceeded the rate limit.
+                                    Too many requests. You&apos;ve exceeded the rate limit.
                                 </p>
                                 <div className="mt-2 p-2 bg-orange-950/20 rounded text-xs text-orange-200">
                                     <strong>Solution:</strong> Wait 60 seconds before retrying. Implement exponential backoff.
@@ -229,13 +229,14 @@ export default function ErrorHandling() {
                 {/* Try-Catch Example */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">Basic Error Handling</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`try {
+                    <CodeBlock
+                        language="typescript"
+                        code={`try {
   const result = await strimz.initializePayment({
-    amount: 5000,
+    amount: 2999,
     currency: 'USD',
-    serviceType: 'electricity',
+    paymentType: 'subscription',
+    interval: 'monthly',
     customerEmail: 'customer@example.com'
   })
 
@@ -265,16 +266,15 @@ export default function ErrorHandling() {
   // Log error for debugging
   console.error('Payment error:', error)
 }`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Retry Logic */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">Retry Logic with Exponential Backoff</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`async function payWithRetry(paymentData, maxRetries = 3) {
+                    <CodeBlock
+                        language="typescript"
+                        code={`async function payWithRetry(paymentData, maxRetries = 3) {
   let retries = 0
   let delay = 1000 // Start with 1 second
 
@@ -300,8 +300,7 @@ export default function ErrorHandling() {
     }
   }
 }`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 
@@ -365,7 +364,7 @@ export default function ErrorHandling() {
             <div className="p-6 bg-gradient-to-br from-accent/10 to-accent/20 rounded-[12px] border border-accent/20">
                 <h3 className="text-white font-sora font-[600] text-lg mb-2">Need Help?</h3>
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
-                    If you're experiencing issues not covered in this guide, we're here to help.
+                    If you&apos;re experiencing issues not covered in this guide, we&apos;re here to help.
                 </p>
                 <div className="flex flex-wrap gap-3">
                     <a

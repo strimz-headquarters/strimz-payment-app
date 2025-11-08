@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Code, Book } from 'lucide-react'
+import CodeBlock from '@/components/docs/CodeBlock'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -51,14 +51,13 @@ export default function APIReference() {
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
                         Initialize the Strimz SDK with your configuration.
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto mb-4">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`const strimz = new StrimzSDK({
+                    <CodeBlock
+                        language="javascript"
+                        code={`const strimz = new StrimzSDK({
   publicKey: 'STRZlive_your_public_key',
   environment: 'live' // or 'test'
 })`}
-                        </pre>
-                    </div>
+                    />
                     <div className="overflow-x-auto">
                         <table className="w-full border-collapse">
                             <thead>
@@ -76,7 +75,7 @@ export default function APIReference() {
                                 </tr>
                                 <tr>
                                     <td className="border border-[#2a2a2a] px-4 py-2 text-[#a0a0a0] font-mono text-sm">environment</td>
-                                    <td className="border border-[#2a2a2a] px-4 py-2 text-[#a0a0a0] font-mono text-sm">'live' | 'test'</td>
+                                    <td className="border border-[#2a2a2a] px-4 py-2 text-[#a0a0a0] font-mono text-sm">&apos;live&apos; | &apos;test&apos;</td>
                                     <td className="border border-[#2a2a2a] px-4 py-2 text-[#a0a0a0] font-poppins text-sm">Environment mode</td>
                                 </tr>
                             </tbody>
@@ -90,9 +89,9 @@ export default function APIReference() {
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
                         Initialize a payment transaction and open the payment modal.
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto mb-4">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`const result = await strimz.initializePayment({
+                    <CodeBlock
+                        language="javascript"
+                        code={`const result = await strimz.initializePayment({
   amount: 5000,
   currency: 'USD',
   serviceType: 'electricity',
@@ -103,8 +102,7 @@ export default function APIReference() {
   onSuccess: (data) => console.log('Success:', data),
   onError: (error) => console.error('Error:', error)
 })`}
-                        </pre>
-                    </div>
+                    />
                     <div className="overflow-x-auto">
                         <table className="w-full border-collapse text-sm">
                             <thead>
@@ -169,9 +167,9 @@ export default function APIReference() {
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
                         Verify a transaction on the server-side (requires secret key).
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`import { StrimzServer } from '@strimz/sdk/server'
+                    <CodeBlock
+                        language="javascript"
+                        code={`import { StrimzServer } from '@strimz/sdk/server'
 
 const strimzServer = new StrimzServer({
   secretKey: process.env.STRIMZ_SECRET_KEY,
@@ -180,8 +178,7 @@ const strimzServer = new StrimzServer({
 
 const transaction = await strimzServer.verifyTransaction('trx_1234567890')
 console.log(transaction.status) // 'success', 'failed', 'pending'`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 
@@ -201,13 +198,12 @@ console.log(transaction.status) // 'success', 'failed', 'pending'`}
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
                         Retrieve a list of your transactions.
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`curl https://api.strimz.io/v1/transactions \\
+                    <CodeBlock
+                        language="bash"
+                        code={`curl https://api.strimz.io/v1/transactions \\
   -H "Authorization: Bearer STRZ_your_secret_key" \\
   -H "Content-Type: application/json"`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Get Single Transaction */}
@@ -219,12 +215,11 @@ console.log(transaction.status) // 'success', 'failed', 'pending'`}
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
                         Get details of a specific transaction.
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`curl https://api.strimz.io/v1/transactions/trx_1234567890 \\
+                    <CodeBlock
+                        language="bash"
+                        code={`curl https://api.strimz.io/v1/transactions/trx_1234567890 \\
   -H "Authorization: Bearer STRZ_your_secret_key"`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Get Customers */}
@@ -236,12 +231,11 @@ console.log(transaction.status) // 'success', 'failed', 'pending'`}
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
                         Retrieve a list of your customers.
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-                            {`curl https://api.strimz.io/v1/customers \\
+                    <CodeBlock
+                        language="bash"
+                        code={`curl https://api.strimz.io/v1/customers \\
   -H "Authorization: Bearer STRZ_your_secret_key"`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 

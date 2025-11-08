@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { Key, Shield, Eye, EyeOff, AlertCircle } from 'lucide-react'
+import { Key, Shield, AlertCircle } from 'lucide-react'
+import CodeBlock from '@/components/docs/CodeBlock'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -124,7 +125,7 @@ export default function Authentication() {
                         <div>
                             <h4 className="text-white font-poppins font-[600] text-base mb-1">Generate Keys</h4>
                             <p className="text-[#a0a0a0] font-poppins font-[400] text-sm">
-                                Click "Generate new API keys" for live mode or "Generate new test keys" for test mode.
+                                Click &quot;Generate new API keys&quot; for live mode or &quot;Generate new test keys&quot; for test mode.
                             </p>
                         </div>
                     </div>
@@ -135,7 +136,7 @@ export default function Authentication() {
                         <div>
                             <h4 className="text-white font-poppins font-[600] text-base mb-1">Copy Keys</h4>
                             <p className="text-[#a0a0a0] font-poppins font-[400] text-sm">
-                                Copy your public and secret keys. Store them securely - you won't be able to see the secret key again.
+                                Copy your public and secret keys. Store them securely - you won&apos;t be able to see the secret key again.
                             </p>
                         </div>
                     </div>
@@ -195,9 +196,9 @@ export default function Authentication() {
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                         Use only your public key for client-side integrations:
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-{`import { StrimzSDK } from '@strimz/sdk'
+                    <CodeBlock
+                        language="javascript"
+                        code={`import { StrimzSDK } from '@strimz/sdk'
 
 const strimz = new StrimzSDK({
   publicKey: process.env.NEXT_PUBLIC_STRIMZ_PUBLIC_KEY,
@@ -210,8 +211,7 @@ const payment = await strimz.initializePayment({
   currency: 'USD',
   serviceType: 'electricity'
 })`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Server-side */}
@@ -220,9 +220,9 @@ const payment = await strimz.initializePayment({
                     <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-3">
                         For server-side operations, use your secret key via the Authorization header:
                     </p>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-{`// Server-side API call
+                    <CodeBlock
+                        language="typescript"
+                        code={`// Server-side API call
 const response = await fetch('https://api.strimz.io/v1/transactions', {
   method: 'GET',
   headers: {
@@ -232,16 +232,15 @@ const response = await fetch('https://api.strimz.io/v1/transactions', {
 })
 
 const transactions = await response.json()`}
-                        </pre>
-                    </div>
+                    />
                 </div>
 
                 {/* Node.js Example */}
                 <div className="mb-8">
                     <h3 className="text-white font-poppins font-[600] text-lg mb-3">Node.js Server Example</h3>
-                    <div className="bg-[#1e1e1e] rounded-[8px] p-4 overflow-x-auto">
-                        <pre className="text-[#d4d4d4] font-mono text-sm">
-{`import { StrimzServer } from '@strimz/sdk/server'
+                    <CodeBlock
+                        language="javascript"
+                        code={`import { StrimzServer } from '@strimz/sdk/server'
 
 // Initialize server SDK with secret key
 const strimzServer = new StrimzServer({
@@ -260,8 +259,7 @@ app.post('/api/verify-transaction', async (req, res) => {
     res.status(400).json({ success: false, error: error.message })
   }
 })`}
-                        </pre>
-                    </div>
+                    />
                 </div>
             </div>
 
@@ -284,7 +282,7 @@ app.post('/api/verify-transaction', async (req, res) => {
                     <div className="p-4 border border-[#2a2a2a] bg-[#1a1a1a] rounded-[8px]">
                         <h4 className="text-white font-poppins font-[600] text-sm mb-2">✓ Rotate Keys Regularly</h4>
                         <p className="text-[#a0a0a0] font-poppins font-[400] text-sm">
-                            Generate new API keys periodically and if you suspect they've been compromised.
+                            Generate new API keys periodically and if you suspect they&apos;ve been compromised.
                         </p>
                     </div>
                     <div className="p-4 border border-[#2a2a2a] bg-[#1a1a1a] rounded-[8px]">

@@ -177,7 +177,7 @@ export default function DocsIntroduction() {
             <div className="p-6 bg-[#1a1a1a] rounded-[12px] border border-[#2a2a2a]">
                 <h3 className="text-white font-sora font-[600] text-lg mb-2">Need Help?</h3>
                 <p className="text-[#a0a0a0] font-poppins font-[400] text-sm mb-4">
-                    Have questions or need assistance with integration? We're here to help.
+                    Have questions or need assistance with integration? We&apos;re here to help.
                 </p>
                 <div className="flex flex-wrap gap-3">
                     <Link
