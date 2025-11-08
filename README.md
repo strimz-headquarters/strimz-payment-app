@@ -110,39 +110,6 @@ bun dev
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
-## 📁 Project Structure
-
-```
-strimz-sdk/
-├── app/
-│   ├── (guest)/              # Public landing pages
-│   ├── docs/                 # SDK documentation pages
-│   │   ├── getting-started/  # Installation and quick start
-│   │   ├── authentication/   # API key authentication
-│   │   ├── payment-integration/  # Payment flow implementation
-│   │   ├── webhooks/         # Webhook setup and verification
-│   │   ├── api-reference/    # Complete API reference
-│   │   └── error-handling/   # Error codes and debugging
-│   ├── user/                 # User dashboard routes
-│   │   ├── dashboard/        # User overview
-│   │   ├── subscriptions/    # Active subscription management
-│   │   ├── tx-history/       # Transaction history
-│   │   └── account/          # User account settings
-│   ├── business/             # Business dashboard routes
-│   │   ├── dashboard/        # Business analytics and metrics
-│   │   ├── customers/        # Customer management
-│   │   ├── transactions/     # Transaction monitoring
-│   │   └── account/          # API keys, webhooks, team settings
-│   └── auth/                 # Authentication flows (user & business)
-├── components/
-│   ├── guest/                # Landing page components
-│   ├── docs/                 # Documentation components (CodeBlock)
-│   ├── user/                 # User dashboard components
-│   └── business/             # Business dashboard components
-├── utils/                    # Utility functions and helpers
-└── public/                   # Static assets
-```
-
 ## 📦 Strimz SDK (npm package)
 
 The Strimz SDK will be published as an npm package (`@strimz/sdk`) that allows businesses to integrate crypto payment functionality:
