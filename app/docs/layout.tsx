@@ -69,6 +69,7 @@ export default function DocsLayout({
                     <div className="flex flex-1 items-center justify-end gap-4">
                         <Link
                             href="/auth/business/signup"
+                            target='_blank'
                             className="hidden md:inline-flex h-10 px-4 py-2 items-center justify-center rounded-[8px] bg-accent text-white font-poppins font-[500] text-sm hover:bg-accent/90 transition-colors"
                         >
                             Get API Access
@@ -95,11 +96,10 @@ export default function DocsLayout({
                                         key={item.href}
                                         href={item.href}
                                         onClick={() => setSidebarOpen(false)}
-                                        className={`flex items-center gap-3 rounded-[8px] px-3 py-2 text-sm font-poppins transition-colors ${
-                                            isActive
+                                        className={`flex items-center gap-3 rounded-[8px] px-3 py-2 text-sm font-poppins transition-colors ${isActive
                                                 ? 'bg-accent/10 text-accent font-[500]'
                                                 : 'text-[#a0a0a0] hover:bg-[#1a1a1a] hover:text-white'
-                                        }`}
+                                            }`}
                                     >
                                         {item.icon}
                                         {item.title}
